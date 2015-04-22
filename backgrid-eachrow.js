@@ -25,4 +25,4 @@ define(['Backgrid', 'ControlClick'], function (){ // @todo Com a implementação
     });
     return each;
   }
-})
+});

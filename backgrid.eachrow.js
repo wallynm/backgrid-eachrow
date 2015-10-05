@@ -1,28 +1,27 @@
-define(['Backgrid', 'ControlClick'], function (){ // @todo Com a implementaÃ§Ã£o do ControlClick 2.0 esta dependÃªncia poderÃ¡ deixar de existir
-  eachRow = function(){
-
+define(['Backgrid', 'ControlClick'], function() {
+  eachRow = function() {
     var each = Backgrid.Row.extend({
-      timeoutDblClick : undefined,
+      timeoutDblClick: undefined,
       events: {
-        "change input[type=checkbox]": "rowClicked",
-        "click" : "rowClicked"
+        'change input[type=checkbox]': 'rowClicked',
+        'click': 'rowClicked'
       },
 
-      rowClicked: function (e)
-      {
-        console.log("ROW CLICKED")
+      rowClicked: function(e) {
         var self = this;
         var row     = $(e.currentTarget);
-        var checked = row.hasClass("selected") ? false : true ;
+        var checked = row.hasClass('selected') ? false : true ;
 
-        if(typeof App.systemActionBar != "undefined"){
-          if(checked) {  App.systemActionBar.addItem(self.model.attributes); }
-          else { App.systemActionBar.removeItem(self.model.attributes); }
+        if (typeof App.systemActionBar !== 'undefined') {
+          if (checked) {  App.systemActionBar.addItem(self.model.attributes); } else { App.systemActionBar.removeItem(self.model.attributes); }
         }
 
-        row.toggleClass("selected", checked);
-        self.model.trigger("backgrid:selected", self.model, checked);
-        row.find("input[type=checkbox]").prop('checked',checked);
+        row.toggleClass('selected', checked);
+        self.model.trigger('backgrid:selected', self.model, checked);
+        row.find('input[type=checkbox]').prop('checked',checked);
+
+        // Implementa os principais meios para ativar o checkbox
+        e.preventDefault();
       },
 
       /*toggleCheck: function (e)
@@ -35,5 +34,5 @@ define(['Backgrid', 'ControlClick'], function (){ // @todo Com a implementaÃ§�
       }*/
     });
     return each;
-  }
-})
+  };
+});

@@ -13,7 +13,11 @@ define(['Backgrid', 'ControlClick'], function() {
         var checked = row.hasClass('selected') ? false : true ;
 
         if (typeof App.systemActionBar !== 'undefined') {
-          if (checked) {  App.systemActionBar.addItem(self.model.attributes); } else { App.systemActionBar.removeItem(self.model.attributes); }
+          if (checked) {
+            App.systemActionBar.addItem(self.model.attributes);
+          } else {
+            App.systemActionBar.removeItem(self.model.attributes);
+          }
         }
 
         row.toggleClass('selected', checked);
